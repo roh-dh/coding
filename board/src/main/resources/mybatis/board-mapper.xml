@@ -35,9 +35,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 	<insert id="insert" parameterType="com.kh.spring09.entity.MenuDto"> -->
 	
 	<insert id="insert" parameterType="boardDto">
-	INSERT INTO 
-	DH_BOARD(BNO,TITLE,CONTENT,WRITER) 
-	VALUES(DH_BOARD_SEQ.NEXTVAL,${title},${content},${writer})
+	INSERT INTO DH_BOARD(BNO, TITLE, CONTENT, WRITER) 
+	VALUES(DH_BOARD_SEQ.NEXTVAL,#{title},#{content},#{writer})
 	</insert>
 	
 </mapper>
