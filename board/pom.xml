@@ -125,6 +125,13 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		<dependency> 
+			<groupId>taglibs</groupId> 
+			<artifactId>standard</artifactId> 
+			<version>1.1.2</version> 
+			<scope>compile</scope> 
+		</dependency>
+
 
 		<!-- Test -->
 		<dependency>
@@ -158,6 +165,13 @@
 			<version>2.7.0</version>
 		</dependency>
 
+		<!-- log4jdbc-log4j2-jdbc4 -->
+        <dependency>
+            <groupId>org.bgee.log4jdbc-log4j2</groupId>
+            <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
+            <version>1.16</version>
+        </dependency>
+        
 		<!-- mybatis dependency -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
