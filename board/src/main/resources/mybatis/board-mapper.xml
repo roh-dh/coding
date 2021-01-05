@@ -38,7 +38,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	INSERT INTO DH_BOARD(BNO, TITLE, CONTENT, WRITER) 
 	VALUES(DH_BOARD_SEQ.NEXTVAL,#{title},#{content},#{writer})
 	</insert>
+
+	<select id="list" resultType="boardDto">
+	SELECT 
+BNO ,
+TITLE ,
+WRITER ,
+REGDATE
+FROM DH_BOARD
+ORDER BY BNO DESC 
 	
+	</select>	
 </mapper>
 
 

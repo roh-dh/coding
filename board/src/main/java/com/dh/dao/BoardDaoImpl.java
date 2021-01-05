@@ -1,5 +1,7 @@
 package com.dh.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -18,4 +20,10 @@ public class BoardDaoImpl implements BoardDao{
 		sqlSession.insert("board.insert",boardDto);
 	}
 
+	@Override
+	public List<BoardDto> list() throws Exception {
+		return sqlSession.selectList("board.list");
+	}
+
+	
 }

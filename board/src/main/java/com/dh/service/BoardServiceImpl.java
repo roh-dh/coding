@@ -1,6 +1,8 @@
 package com.dh.service;
 
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -17,6 +19,11 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void write(BoardDto boardDto) throws Exception {
 		boardDao.write(boardDto);
+	}
+
+	@Override
+	public List<BoardDto> list() throws Exception {
+		return boardDao.list();
 	}
 
 }
