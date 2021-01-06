@@ -25,5 +25,13 @@ public class BoardDaoImpl implements BoardDao{
 		return sqlSession.selectList("board.list");
 	}
 
+	@Override
+	public BoardDto read(int bno) throws Exception {
+		return sqlSession.selectOne("board.read", bno);
+	}
+
+
+	
+
 	
 }

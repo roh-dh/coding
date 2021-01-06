@@ -39,16 +39,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	VALUES(DH_BOARD_SEQ.NEXTVAL,#{title},#{content},#{writer})
 	</insert>
 
+<!--게시글 목록조회-->
 	<select id="list" resultType="boardDto">
 	SELECT 
-BNO ,
-TITLE ,
-WRITER ,
-REGDATE
-FROM DH_BOARD
-ORDER BY BNO DESC 
-	
+	BNO ,
+	TITLE ,
+	WRITER ,
+	REGDATE
+	FROM DH_BOARD
+	ORDER BY BNO DESC 
 	</select>	
+	
+<!--게시글 상세내용 조회-->	
+	<select id="read" parameterType="int" resultType="boardDto">
+	SELECT
+		TITLE,
+		WRITER,
+		CONTENT
+	FROM DH_BOARD
+	WHERE BNO = #{BNO}
+	</select>
+	
 </mapper>
 
 

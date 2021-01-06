@@ -11,4 +11,9 @@ public interface BoardService {
 
 	//게시글 목록
 	public List<BoardDto> list() throws Exception;	
+
+	//게시글 내용 조회
+	public BoardDto read(int bno) throws Exception;
+
 }
+
