@@ -1,5 +1,7 @@
 package com.dh.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -23,14 +25,14 @@ public class BoardController {
 	BoardService service;
 	
 	// 게시판 글 작성 화면
-	@RequestMapping(value = "/board/writeView", method = RequestMethod.GET)
+	@RequestMapping(value = "board/writeView", method = RequestMethod.GET)
 	public void writeView() throws Exception{
 		logger.info("writeView");
 		
 	}
 	
 	// 게시판 글 작성
-	@RequestMapping(value = "/board/write", method = RequestMethod.POST)
+	@RequestMapping(value = "board/write", method = RequestMethod.POST)
 	public String write(BoardDto boardDto) throws Exception{
 		logger.info("write");
 		
@@ -59,4 +61,37 @@ public class BoardController {
 
 		return "/board/readView";
 	}
+	//게시글 수정뷰
+	@RequestMapping(value = "/updateView", method = RequestMethod.GET)
+	public String updateView(
+			BoardDto boardDto,
+			Model model
+			) throws Exception{
+			logger.info("updateView");
+
+			model.addAttribute("update", service.read(boardDto.getBno()));
+			
+		return "board/updateView";
+	}
+	
+	//게시글 수정
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(BoardDto boardDto) throws Exception {
+		logger.info("update");
+		
+		service.update(boardDto);
+		
+		return "redirect:/board/list";
+	}
+	
+	//게시글 삭제
+	@RequestMapping(value ="/delete", method = RequestMethod.POST)
+	public String delete(int bno) throws Exception{
+		logger.info("delete");
+		
+		service.delete(bno);
+		
+		return "redirect:/board/list";
+	}
+	
 }

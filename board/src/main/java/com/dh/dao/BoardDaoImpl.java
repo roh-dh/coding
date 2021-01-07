@@ -30,7 +30,18 @@ public class BoardDaoImpl implements BoardDao{
 		return sqlSession.selectOne("board.read", bno);
 	}
 
+	@Override
+	public void update(BoardDto boardDto) throws Exception {
+		sqlSession.update("board.update", boardDto);
+		
+	}
 
+	@Override
+	public void delete(int bno) throws Exception {
+		sqlSession.delete("board.delete", bno);
+		
+	}
+	
 	
 
 	

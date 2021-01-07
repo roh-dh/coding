@@ -14,4 +14,11 @@ public interface BoardDao {
 	
 	//게시글 내용조회
 	public BoardDto read(int bno) throws Exception;
+
+	//게시글 수정
+	public void update(BoardDto boardDto) throws Exception;
+	
+	//게시글 삭제
+	public void delete(int bno) throws Exception;
+	
 }

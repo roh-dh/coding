@@ -53,12 +53,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!--게시글 상세내용 조회-->	
 	<select id="read" parameterType="int" resultType="boardDto">
 	SELECT
+		bno,
 		TITLE,
 		WRITER,
-		CONTENT
+		CONTENT,
+		regdate
 	FROM DH_BOARD
-	WHERE BNO = #{BNO}
+	WHERE BNO = #{bno}
 	</select>
+	
+<!--게시글 수정-->
+	<update id="update" parameterType="boardDto">
+	UPDATE DH_BOARD 
+	SET TITLE = #{title},
+		CONTENT = #{content}
+	WHERE BNO = #{bNo}
+	</update>
+	
+<!--게시글 삭제-->	
+	<delete id="delete" parameterType="int">
+	DELETE 
+	FROM DH_BOARD 
+	WHERE BNO = #{bno}
+	</delete>
+	
 	
 </mapper>
 
