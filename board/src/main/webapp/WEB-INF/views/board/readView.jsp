@@ -20,9 +20,14 @@
 			
 			// 삭제
 			$(".delete_btn").on("click", function(){
-				formObj.attr("action", "/board/delete");
-				formObj.attr("method", "post");
-				formObj.submit();
+				var deleteYN = confirm("정말 삭제하시겠습니까?");
+
+				if(deleteYN){	
+					formObj.attr("action", "/board/delete");
+					formObj.attr("method", "post");
+					formObj.submit();
+					}					
+				
 			})
 			
 			// 취소
@@ -41,9 +46,10 @@
 			</header>
 			<hr />
 			 
-			<nav>
-			  홈 - 글 작성
-			</nav>
+			<div>
+				<%@include file="nav.jsp" %>
+			</div>
+			
 			<hr />
 			
 			<section id="container">
