@@ -13,7 +13,26 @@
 				event.preventDefault();
 				location.href = "/board/list";
 			})
+			
+			$(".update_btn").on("click", function() {
+				var formObj = $("form[name='updateForm']");
+				if(fn_valiChk()){
+					return false
+				}
+				formObj.attr("action", "/board/update");
+				formObj.attr("method", "post");
+				formObj.submit();
+			});
 		})
+		function fn_valiChk() {
+			updateForm = $("form[name='updateForm'].chk").length;
+			for(var i=0; i<updateForm; i++){
+				if($(".chk").eq(i).val() = null || $(".chk").eq(i).val() = ""){
+					alert($(".chk").attr("title"));
+				}
+			}
+			return true
+		}
 	
 	</script>
 	<body>
@@ -36,12 +55,12 @@
 						<tbody>
 							<tr>
 								<td>
-									<label for="title">제목</label><input type="text" id="title" name="title" value="${update.title}"/>
+									<label for="title">제목</label><input type="text" id="title" name="title" value="${update.title}" class="chk" title="제목을 입력하세요"/>
 								</td>
 							</tr>	
 							<tr>
 								<td>
-									<label for="content">내용</label><textarea id="content" name="content"><c:out value="${update.content}" /></textarea>
+									<label for="content">내용</label><textarea id="content" name="content"><c:out value="${update.content}" class="chk" title="내용을 입력하세요" /></textarea>
 								</td>
 							</tr>
 							<tr>

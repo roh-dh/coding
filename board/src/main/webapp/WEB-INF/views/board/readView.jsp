@@ -30,6 +30,9 @@
 				
 			})
 			
+			
+			
+			
 			// 취소
 			$(".list_btn").on("click", function(){
 				
