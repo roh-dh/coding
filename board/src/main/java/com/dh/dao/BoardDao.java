@@ -3,14 +3,18 @@ package com.dh.dao;
 import java.util.List;
 
 import com.dh.entity.BoardDto;
+import com.dh.vo.CriteriaVo;
 
 public interface BoardDao {
 	
 	//게시글 작성
 	public void write(BoardDto boardDto) throws Exception;
 	
-	//게시글 목록
-	public List<BoardDto> list() throws Exception;
+	//게시물 목록
+	public List<BoardDto> list(CriteriaVo cri) throws Exception;
+	
+	//게시물 총 갯수
+	public int ListCount() throws Exception;
 	
 	//게시글 내용조회
 	public BoardDto read(int bno) throws Exception;

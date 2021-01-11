@@ -40,26 +40,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 <!--게시글 목록조회-->
-	<select id="list" resultType="boardDto">
-	SELECT 
-	BNO ,
-	TITLE ,
-	WRITER ,
-	REGDATE
-	FROM DH_BOARD
-	ORDER BY BNO DESC 
-	</select>	
+	<select id="listPage" resultType="boardDto" parameterType="criteriaVo">
+		SELECT  BNO, 
+		        TITLE, 
+		        CONTENT,
+		        WRITER, 
+		        REGDATE
+		 FROM ( 
+		        SELECT BNO, 
+		               TITLE, 
+		               CONTENT, 
+		               WRITER, 
+		               REGDATE, 
+		               ROW_NUMBER() OVER(ORDER BY BNO DESC) AS RNUM
+		         FROM DH_BOARD 
+		                       ) DH
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY BNO DESC
+
+	</select>
+<!--게시글 총 갯수조회  -->		
+	<select id="listCount" resultType="int">
+	<![CDATA[
+	SELECT 	COUNT(BNO)
+	FROM 	DH_BOARD
+	WHERE	BNO > 0
+	]]>
+	</select>
+
 	
 <!--게시글 상세내용 조회-->	
 	<select id="read" parameterType="int" resultType="boardDto">
-	SELECT
-		bno,
-		TITLE,
-		WRITER,
-		CONTENT,
-		regdate
-	FROM DH_BOARD
-	WHERE BNO = #{bno}
+	SELECT	BNO,
+			TITLE,
+			WRITER,
+			CONTENT,
+			REGDATE
+	FROM 	DH_BOARD
+	WHERE 	BNO = #{bno}
 	</select>
 	
 <!--게시글 수정-->

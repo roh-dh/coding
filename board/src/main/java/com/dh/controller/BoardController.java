@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dh.entity.BoardDto;
 import com.dh.service.BoardService;
+import com.dh.vo.CriteriaVo;
+import com.dh.vo.PageMaker;
 
 
 @Controller
@@ -42,10 +44,19 @@ public class BoardController {
 	}
 	// 게시판 목록
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(Model model) throws Exception{
+	public String list(
+			Model model,
+			CriteriaVo cri
+			)
+			throws Exception{
 		logger.info("list");
 		
-		model.addAttribute("list", service.list());
+		model.addAttribute("list", service.list(cri));
+		PageMaker pagemaker = new PageMaker();
+		pagemaker.setCri(cri);
+		pagemaker.setTotalCount(service.listCount());
+	
+		model.addAttribute("pageMaker", pagemaker);
 		return "board/list";
 	}
 	

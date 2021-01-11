@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.dh.dao.BoardDao;
 import com.dh.entity.BoardDto;
+import com.dh.vo.CriteriaVo;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -19,11 +20,6 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void write(BoardDto boardDto) throws Exception {
 		boardDao.write(boardDto);
-	}
-
-	@Override
-	public List<BoardDto> list() throws Exception {
-		return boardDao.list();
 	}
 
 	@Override
@@ -39,6 +35,16 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void delete(int bno) throws Exception {
 		boardDao.delete(bno);
+	}
+
+	@Override
+	public List<BoardDto> list(CriteriaVo cri) throws Exception {
+		return boardDao.list(cri);
+	}
+
+	@Override
+	public int listCount() throws Exception {
+		return boardDao.ListCount();
 	}
 
 	
