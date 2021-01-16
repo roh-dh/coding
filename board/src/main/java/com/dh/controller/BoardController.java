@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -15,6 +16,7 @@ import com.dh.entity.BoardDto;
 import com.dh.service.BoardService;
 import com.dh.vo.CriteriaVo;
 import com.dh.vo.PageMaker;
+import com.dh.vo.SearchCriteria;
 
 
 @Controller
@@ -46,15 +48,16 @@ public class BoardController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(
 			Model model,
-			CriteriaVo cri
+			@ModelAttribute("scri")
+			SearchCriteria scri
 			)
 			throws Exception{
 		logger.info("list");
 		
-		model.addAttribute("list", service.list(cri));
+		model.addAttribute("list", service.list(scri));
 		PageMaker pagemaker = new PageMaker();
-		pagemaker.setCri(cri);
-		pagemaker.setTotalCount(service.listCount());
+		pagemaker.setCri(scri);
+		pagemaker.setTotalCount(service.listCount(scri));
 	
 		model.addAttribute("pageMaker", pagemaker);
 		return "board/list";

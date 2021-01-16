@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.dh.dao.BoardDao;
 import com.dh.entity.BoardDto;
 import com.dh.vo.CriteriaVo;
+import com.dh.vo.SearchCriteria;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -38,13 +39,13 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardDto> list(CriteriaVo cri) throws Exception {
-		return boardDao.list(cri);
+	public List<BoardDto> list(SearchCriteria scri) throws Exception {
+		return boardDao.list(scri);
 	}
 
 	@Override
-	public int listCount() throws Exception {
-		return boardDao.ListCount();
+	public int listCount(SearchCriteria scri) throws Exception {
+		return boardDao.ListCount(scri);
 	}
 
 	

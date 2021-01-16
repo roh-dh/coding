@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.dh.entity.BoardDto;
 import com.dh.vo.CriteriaVo;
+import com.dh.vo.SearchCriteria;
 
 public interface BoardDao {
 	
@@ -11,10 +12,10 @@ public interface BoardDao {
 	public void write(BoardDto boardDto) throws Exception;
 	
 	//게시물 목록
-	public List<BoardDto> list(CriteriaVo cri) throws Exception;
+	public List<BoardDto> list(SearchCriteria scri) throws Exception;
 	
 	//게시물 총 갯수
-	public int ListCount() throws Exception;
+	public int ListCount(SearchCriteria scri) throws Exception;
 	
 	//게시글 내용조회
 	public BoardDto read(int bno) throws Exception;
