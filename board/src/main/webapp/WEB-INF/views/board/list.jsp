@@ -29,7 +29,11 @@
 							<tr>
 								<td><c:out value="${list.bno}" /></td>
 								<td>
-									<a href="/board/readView?bno=${list.bno}"><c:out value="${list.title}" /></a>
+									<a href="/board/readView?bno=${list.bno}&
+															page=${scri.page}&
+															perPageNum=${scri.perPageNum}&
+															searchType=${scri.searchType}&
+															keyword=${scri.keyword}"><c:out value="${list.title}" /></a>
 								</td>
 								<td><c:out value="${list.writer}" /></td>
 								<td><fmt:parseDate value="${list.regdate}" pattern="yyyy-MM-dd HH:mm" var="myDate"/>
@@ -53,7 +57,7 @@
     <script>
       $(function(){
         $('#searchBtn').click(function() {
-          self.location = "list" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+          self.location = "list" + '${pageMaker.makeSearch(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
         });
       });   
     </script>
@@ -64,15 +68,15 @@
 					<div>
 					  <ul>
     					<c:if test="${pageMaker.prev}">
-					    	<li><a href="list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+					    	<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
     					</c:if> 
 
 					    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-    						<li><a href="list${pageMaker.makeQuery(idx)}">${idx}</a></li>
+    						<li><a href="list${pageMaker.makeSearch(idx)}">${idx}</a></li>
 					    </c:forEach>
 
 					    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-    						<li><a href="list${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+    						<li><a href="list${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
 					    </c:if> 
 					  </ul>
 					</div>

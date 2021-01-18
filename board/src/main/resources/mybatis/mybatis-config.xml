@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.dh.entity.BoardDto" alias="boardDto"/>
 		<typeAlias type="com.dh.vo.CriteriaVo" alias="criteriaVo"/>
 		<typeAlias type="com.dh.vo.SearchCriteria" alias="searchCriteria"/>
-		
+		<typeAlias type="com.dh.vo.ReplyVo" alias="replyVo"/>
 	</typeAliases>
 	
 </configuration>
