@@ -2,6 +2,8 @@ package com.dh.controller;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -13,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.dh.dao.ReplyService;
 import com.dh.entity.BoardDto;
 import com.dh.service.BoardService;
 import com.dh.vo.CriteriaVo;
 import com.dh.vo.PageMaker;
+import com.dh.vo.ReplyVo;
 import com.dh.vo.SearchCriteria;
 
 
@@ -28,6 +32,9 @@ public class BoardController {
 	
 	@Inject
 	BoardService service;
+	
+	@Inject
+	ReplyService replyService;
 	
 	// 게시판 글 작성 화면
 	@RequestMapping(value = "board/writeView", method = RequestMethod.GET)
@@ -75,6 +82,9 @@ public class BoardController {
 		
 		model.addAttribute("read", service.read(boardDto.getBno()));
 		model.addAttribute("scri",scri);
+
+		List<ReplyVo> replyList = replyService.readReply(boardDto.getBno());
+		model.addAttribute("replyList", replyList);
 		
 		
 		return "/board/readView";
