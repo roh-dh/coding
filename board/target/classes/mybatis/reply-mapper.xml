@@ -15,6 +15,50 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DH_REPLY
 	WHERE BNO=${bno}
 </select>
-	
+
+<insert id="writeReply" parameterType="replyVo">
+	INSERT INTO DH_REPLY(
+				BNO,
+				RNO,
+				WRITER,
+				CONTENT
+				)
+			VALUES(
+				#{bno},
+				dh_reply_seq.nextval,
+				#{writer},
+				#{content}
+			)
+</insert>	
+
+<update id="updateReply" parameterType="replyVo">
+	UPDATE 	
+		DH_REPLY
+	SET 		
+		CONTENT = #{content}
+	WHERE 	
+		RNO = #{rno}
+</update>
+
+<delete id="deleteReply" parameterType="replyVo">
+	DELETE 	
+	FROM 	
+		DH_REPLY
+	WHERE 
+		RNO = #{rno}
+</delete>
+
+<select id="selectReply" parameterType="int" resultType="replyVo">
+	SELECT 	
+		BNO,
+		RNO,
+		WRITER,
+		CONTENT,
+		REGDATE
+	FROM 		
+		DH_REPLY
+	WHERE 	
+		RNO = #{rno}
+</select>
 
 </mapper>
